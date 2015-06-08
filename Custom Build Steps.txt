@@ -1,0 +1,23 @@
+=================
+  Windows:
+=================
+
+Custom Process Step 1:
+Command:     cmd
+Arguments:   /c ..\Mentol\PostBuild.bat %{buildDir}\src\MentolLib\debug\Mentollib.dll %{buildDir}\unittests\debug\
+Working dir: %{buildDir}
+
+
+Custom Process Step 2:
+Command:     %{buildDir}\unittests\debug\unittests.exe
+Arguments:   1>&2
+Working dir: %{buildDir}
+
+
+
+=================
+  Unix:
+=================
+
+Default Make step: Make arguments: check
+
