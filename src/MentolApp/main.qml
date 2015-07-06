@@ -39,10 +39,9 @@ ApplicationWindow {
                 Component.onCompleted: forceActiveFocus()
             }
 
-            Rectangle {
+            Item {
                 width: 20
                 height: parent.height
-                color: 'transparent'
             }
 
             Button {
@@ -54,96 +53,112 @@ ApplicationWindow {
             }
         }
 
-        Text {
-            id: textualVisualization
-            Layout.fillWidth: true
-            Layout.preferredHeight: parent.height / 2
-            text: mainViewModel.textualVisualization;
-            font.pixelSize: valueInput.font.pixelSize
-            color: mentolLightGray
-        }
-
-        Column {
-            id: canvasColumn
+        Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            Row {
-                id: legendCaptions
-                spacing: 20
+            ColumnLayout {
+                anchors.fill: parent
+
                 Text {
-                    width: canvasColumn.width / 2 - 10
-                    text: 'Difficulty'
-                    color: mentolDarkGreen
-                    font.pixelSize: valueInput.height * 0.3
-                    font.weight: Font.Bold
-                    horizontalAlignment: Text.AlignRight
+                    id: textualVisualization
+                    Layout.preferredHeight: parent.height / 2
+                    text: mainViewModel.textualVisualization;
+                    font.pixelSize: valueInput.font.pixelSize
+                    color: mentolLightGray
                 }
-                Text {
-                    text: 'Precision'
-                    color: mentolDarkGreen
-                    font.pixelSize: valueInput.height * 0.3
-                    font.weight: Font.Black
-                }
-            }
 
-            Repeater {
-                id: canvasRepeater
-                model: mainViewModel.complexityDistribution
-
-                MouseArea {
-                    onPressed: mainViewModel.setUserPreferenceOfComplexity(100 - model.precision)
-                    hoverEnabled: true
-//                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                    onEntered: if (pressed) mainViewModel.setUserPreferenceOfComplexity(100 - model.precision)
-
-                    width: canvasColumn.width
-                    height: (canvasColumn.height - legendCaptions.height) / canvasRepeater.count
+                Column {
+                    id: canvasColumn
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
                     Row {
-                        anchors.fill: parent
-                        layoutDirection: "RightToLeft"
+                        id: legendCaptions
+                        spacing: 20
+                        Text {
+                            width: canvasColumn.width / 2 - 10
+                            text: 'Difficulty'
+                            color: mentolDarkGreen
+                            font.pixelSize: valueInput.height * 0.3
+                            font.weight: Font.Bold
+                            horizontalAlignment: Text.AlignRight
+                        }
+                        Text {
+                            text: 'Precision'
+                            color: mentolDarkGreen
+                            font.pixelSize: valueInput.height * 0.3
+                            font.weight: Font.Black
+                        }
+                    }
 
-                        Item {
-                            width: canvasColumn.width / 2
-                            height: parent.height
+                    Repeater {
+                        id: canvasRepeater
+                        model: mainViewModel.complexityDistribution
 
-                            Rectangle {
-                                id: precisionBar
-                                color: mentolDarkGreen
-                                border.width: 7
-                                radius: 14
-                                border.color: mentolLightGreen
-                                opacity: model.isUserPreferred ? 1 : 0.9
-                                height: parent.height
-                                width: 0.01 * canvasColumn.width / 2 * model.precision
+                        MouseArea {
+                            onPressed: mainViewModel.setUserPreferenceOfComplexity(100 - model.precision)
+                            hoverEnabled: true
+        //                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                            onEntered: if (pressed) mainViewModel.setUserPreferenceOfComplexity(100 - model.precision)
 
-                                Text {
-                                    width: parent.width
+                            width: canvasColumn.width
+                            height: (canvasColumn.height - legendCaptions.height) / canvasRepeater.count
+
+                            Row {
+                                anchors.fill: parent
+                                layoutDirection: "RightToLeft"
+
+                                Item {
+                                    width: canvasColumn.width / 2
                                     height: parent.height
-                                    text: model.precision + '%'
-                                    color: model.isUserPreferred ? mentolLightGray : mentolLightGreen
-                                    font.pixelSize: valueInput.height * 0.5
-                                    font.weight: Font.Bold
-                                    horizontalAlignment: Text.AlignRight
-                                    verticalAlignment: Text.AlignVCenter
-                                    x: -20
+
+                                    Rectangle {
+                                        id: precisionBar
+                                        color: mentolDarkGreen
+                                        border.width: 7
+                                        radius: 14
+                                        border.color: mentolLightGreen
+                                        opacity: model.isUserPreferred ? 1 : 0.9
+                                        height: parent.height
+                                        width: 0.01 * canvasColumn.width / 2 * model.precision
+
+                                        Text {
+                                            width: parent.width
+                                            height: parent.height
+                                            text: model.precision + '%'
+                                            color: model.isUserPreferred ? mentolLightGray : mentolLightGreen
+                                            font.pixelSize: valueInput.height * 0.5
+                                            font.weight: Font.Bold
+                                            horizontalAlignment: Text.AlignRight
+                                            verticalAlignment: Text.AlignVCenter
+                                            x: -20
+                                        }
+                                    }
+                                }
+
+                                Rectangle {
+                                    width: model.complexityNormalized * canvasColumn.width / 2
+                                    height: parent.height
+                                    color: mentolDarkGreen
+                                    border.width: 7
+                                    radius: 14
+                                    border.color: mentolLightGreen
+                                    opacity: model.isUserPreferred ? 1 : 0.9
                                 }
                             }
-                        }
-
-                        Rectangle {
-                            width: model.complexityNormalized * canvasColumn.width / 2
-                            height: parent.height
-                            color: mentolDarkGreen
-                            border.width: 7
-                            radius: 14
-                            border.color: mentolLightGreen
-                            opacity: model.isUserPreferred ? 1 : 0.9
                         }
                     }
                 }
             }
+
+            Keypad {
+                visible: false
+                width: parent.width
+                height: parent.height
+                background: mentolLightGreen
+            }
+
         }
     }
 }

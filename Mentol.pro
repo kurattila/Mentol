@@ -52,6 +52,8 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 DISTFILES += \
-    android/AndroidManifest.xml
+    android/AndroidManifest.xml \
+    src/MentolApp/Keypad.qml \
+    src/MentolApp/KeypadButton.qml
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

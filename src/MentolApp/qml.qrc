@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Keypad.qml</file>
+        <file>KeypadButton.qml</file>
     </qresource>
 </RCC>
