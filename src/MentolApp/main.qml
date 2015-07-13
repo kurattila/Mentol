@@ -21,35 +21,19 @@ ApplicationWindow {
         width: parent.width - 10
         height: parent.height - 10
 
-        Row {
-            id: calculatePanel
+        MouseArea {
             Layout.fillWidth: true
             Layout.preferredHeight: Math.max(50, parent.height / 10)
+            onClicked: mainViewModel.keypadShown = !mainViewModel.keypadShown;
 
-            TextInput {
+            Text {
                 id: valueInput
-                width: parent.width - calculateButton.width
-                height: parent.height
+                text: mainViewModel.keypadProcessorWholeInput + " \u2304"
+                anchors.fill: parent
                 font.pixelSize: height * 0.9
                 color: 'white'
                 font.weight: Font.Black
                 horizontalAlignment: TextInput.AlignRight
-                validator: DoubleValidator { bottom: 0.0001; }
-                onAccepted: mainViewModel.calculate( parseFloat(text.replace(',', '.')) )
-                Component.onCompleted: forceActiveFocus()
-            }
-
-            Item {
-                width: 20
-                height: parent.height
-            }
-
-            Button {
-                id: calculateButton
-                width: Math.max(250, parent.width / 10)
-                height: parent.height
-                text: "Let's Mentol!"
-                onClicked: mainViewModel.calculate( parseFloat(valueInput.text.replace(',', '.')) )
             }
         }
 
@@ -153,10 +137,11 @@ ApplicationWindow {
             }
 
             Keypad {
-                visible: false
+                visible: mainViewModel.keypadShown
                 width: parent.width
                 height: parent.height
                 background: mentolLightGreen
+                onButtonPressed: mainViewModel.keypadButtonPressed(buttonText);
             }
 
         }

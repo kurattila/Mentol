@@ -9,6 +9,7 @@ Item {
     property int buttonWidth: (width - 3*buttonSpacing) / 4
     property int buttonHeight: (height - 4*buttonSpacing) / 5
     property color background
+    signal buttonPressed(string buttonText)
 
     Rectangle {
         anchors.fill: parent
@@ -23,66 +24,77 @@ Item {
                 keypadText: '7'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '8'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '9'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '<--'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed('delChar')
             }
 
             KeypadButton {
                 keypadText: '4'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '5'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '6'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: 'C'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '1'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '2'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '3'
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             Item {}
@@ -92,17 +104,14 @@ Item {
                 Layout.columnSpan: 2
                 Layout.preferredWidth: 2 * buttonWidth + buttonSpacing
                 Layout.preferredHeight: buttonHeight
-//                width: root.width / 2
-//                height: root.height / 4
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '.'
-//                Layout.columnSpan: 2
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
-//                width: root.width / 2
-//                height: root.height / 4
+                onClicked: buttonPressed(keypadText)
             }
 
             Item {}
@@ -113,6 +122,7 @@ Item {
                 Layout.columnSpan: 2
                 Layout.preferredWidth: 2 * buttonWidth + buttonSpacing
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
@@ -121,6 +131,7 @@ Item {
                 Layout.columnSpan: 2
                 Layout.preferredWidth: 2 * buttonWidth + buttonSpacing
                 Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
             }
         }
     }

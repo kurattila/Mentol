@@ -17,14 +17,16 @@ SOURCES +=  src/MentolLib/calcoperation.cpp \
             src/MentolLib/KnownOperations.cpp \
             src/MentolLib/CalcResolver.cpp \
             src/MentolLib/CalcOperationsVisualizer.cpp \
-            src/MentolLib/CalcOperationsToGeometryConverter.cpp
+            src/MentolLib/CalcOperationsToGeometryConverter.cpp \
+            src/MentolLib/KeypadProcessor.cpp
 
 SOURCES  += UnitTests/CalcOperation_Tests.cpp \
             UnitTests/KnownOperations_Tests.cpp \
             UnitTests/CalcResolver_Tests.cpp \
             UnitTests/CalcOperationsVisualizer_Tests.cpp \
             UnitTests/CalcOperationsSvgVisualizer_Tests.cpp \
-            UnitTests/CalcOperationsToGeometryConverter_Tests.cpp
+            UnitTests/CalcOperationsToGeometryConverter_Tests.cpp \
+            UnitTests/KeypadProcessor_Tests.cpp
 
 
 HEADERS  += src/MentolLib/MainViewModel.h \
@@ -39,7 +41,8 @@ HEADERS +=  src/MentolLib/ICalcOperation.h \
             src/MentolLib/ICalcResolver.h \
             src/MentolLib/CalcOperationsVisualizer.h \
             src/MentolLib/ICalcOperationsVisualizer.h \
-            src/MentolLib/ICalcOperationsToGeometryConverter.h
+            src/MentolLib/ICalcOperationsToGeometryConverter.h \
+            src/MentolLib/KeypadProcessor.h
 
 HEADERS +=  UnitTests/AutoTest.h
 
