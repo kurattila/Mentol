@@ -1,6 +1,7 @@
 #ifndef CALCOPERATIONSVISUALIZER_H
 #define CALCOPERATIONSVISUALIZER_H
 
+#include <QString>
 #include "ICalcOperationsVisualizer.h"
 
 class CalcOperationsTextualVisualizer : public ICalcOperationsVisualizer
@@ -10,6 +11,8 @@ public:
     virtual ~CalcOperationsTextualVisualizer() { }
 
     virtual QString GetResult(const std::list<ICalcOperation_shptr>& allOps, ICalcOperationsVisualizer::Context* context = nullptr) const;
+
+    static QString TooManyOperationsText;
 };
 
 class CalcOperationsSvgVisualizer : public ICalcOperationsVisualizer

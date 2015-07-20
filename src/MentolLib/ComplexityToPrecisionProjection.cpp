@@ -35,6 +35,8 @@ std::list< std::pair<int, int> > ComplexityToPrecisionProjection::GetDataPoints(
         resolver->SetTolerancePercents(tolerancePercents);
 
         auto neededOperations = resolver->GetNeededOperations();
+        if (neededOperations.empty())
+            continue;
         int accumulatedComplexity = resolver->GetAccumulatedComplexity(neededOperations);
         updateComplexityToPrecisionMap(complexityToPrecisionMap, accumulatedComplexity, 100 - tolerancePercents);
     }

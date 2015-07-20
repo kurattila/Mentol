@@ -30,6 +30,9 @@ signals:
 
 public slots:
 
+protected:
+    virtual void updateOperationsVisualization(int tolerancePercents);
+
 private:
     const QString& getTextualVisualization() const;
     QString m_TextualVisualization;
@@ -44,7 +47,6 @@ private:
 
     QString getKeypadProcessorWholeInput() const;
 
-    void updateOperationsVisualization(int tolerancePercents);
     void hideKeypad();
     void restartCalculation();
 };

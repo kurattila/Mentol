@@ -136,12 +136,23 @@ void CalcResolver::updateBestMatchOpsWhenResultImproves(std::list<ICalcOperation
     }
 }
 
+void ensureAtLeastIdentityOperation(std::list<ICalcOperation_shptr>& ops)
+{
+    if (ops.empty())
+    {
+        ops.push_back( CreateCalcOperation(1.0) );
+    }
+}
+
 std::list<ICalcOperation_shptr> CalcResolver::GetNeededOperations() const
 {
     std::list<ICalcOperation_shptr> bestMatchOps;
 
     if (operationsEnoughForTolerance(m_DestValue, m_AcceptedTolerancePercents, bestMatchOps))
+    {
+        ensureAtLeastIdentityOperation(bestMatchOps);
         return bestMatchOps; // close to 1.0 with accepted tolerance, so no mental calculations needed to do
+    }
 
 
     int minAccumulatedComplexityFound = std::numeric_limits<int>::max();

@@ -15,6 +15,7 @@ private slots:
     void GetDataPoints_ReturnsMultipleDataPoints_WhenMultipleDifferentPrecisionsPossible();
     void GetDataPoints_ReturnsMultipleDataPoints_ForSpecialLimitValue();
     void GetDataPoints_ReturnsComplexityAsWell_Always();
+    void GetDataPoints_ReturnsNoDataPoints_WhenDestValueCantBeComputed();
 };
 
 void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsSingleDataPointOf100Precision_WhenNeededOperationsEmpty()
@@ -101,6 +102,18 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsComplexityAsWel
     QCOMPARE(std::next(dataPoints.begin(), 0)->first, 0);
     QCOMPARE(std::next(dataPoints.begin(), 1)->first, 2);
     QCOMPARE(std::next(dataPoints.begin(), 2)->first, 4);
+}
+
+void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsNoDataPoints_WhenDestValueCantBeComputed()
+{
+    const double destValue = 0.00001; // would require too many operations => can't be computed in a sane way
+    ICalcResolver_shptr resolver = CreateCalcResolver();
+    resolver->SetDestValue(destValue);
+    ComplexityToPrecisionProjection complexityProjection;
+
+    auto dataPoints = complexityProjection.GetDataPoints(destValue);
+
+    QCOMPARE(dataPoints.size(), 0U);
 }
 
 #include "ComplexityToPrecisionProjection_Tests.moc"

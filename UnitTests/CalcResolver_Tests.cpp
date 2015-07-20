@@ -26,6 +26,7 @@ private slots:
     void GetNeededOperations_Returns_ForZeroPointThirteen();
     void GetNeededOperations_Returns_TwoTwoTwoForEight();
     void GetNeededOperations_CanHandleZeroTolerance_WhenFullPrecisionPossible();
+    void GetNeededOperations_WillReturnNoOperations_WhenDestValueOperationsCantBeComputed();
 
     void GetAccumulatedComplexity_Returns_ZeroForNoOps();
     void GetAccumulatedComplexity_ReturnsSingleOpComplexity_ForSingleOp();
@@ -41,7 +42,8 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsIdentity_ForOne()
 
     auto neededOperations = m_CalcResolver->GetNeededOperations();
 
-    QVERIFY(neededOperations.empty());
+    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.front()->GetFinalMultiplier(), 1.);
 }
 
 void CalcResolver_Tests::GetNeededOperations_ReturnsSingleBaseOperation_ForExactMatch()
@@ -85,7 +87,8 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsIdentity_WhenHugeToleranceAc
 
     auto neededOperations = m_CalcResolver->GetNeededOperations();
 
-    QVERIFY(neededOperations.empty());
+    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.front()->GetFinalMultiplier(), 1.);
 }
 
 void CalcResolver_Tests::GetNeededOperations_ReturnsExactMatchingTwoOps_WhenTinyToleranceAccepted()
@@ -218,6 +221,16 @@ void CalcResolver_Tests::GetNeededOperations_CanHandleZeroTolerance_WhenFullPrec
     QCOMPARE((*op)->GetFinalMultiplier(), 1.);
     op++;
     QCOMPARE((*op)->GetFinalMultiplier(), .1);
+}
+
+void CalcResolver_Tests::GetNeededOperations_WillReturnNoOperations_WhenDestValueOperationsCantBeComputed()
+{
+    m_CalcResolver->SetDestValue(0.00001);
+    m_CalcResolver->SetTolerancePercents(15);
+
+    std::list<ICalcOperation_shptr> neededOperations = m_CalcResolver->GetNeededOperations();
+
+    QVERIFY(neededOperations.empty());
 }
 
 void CalcResolver_Tests::GetAccumulatedComplexity_Returns_ZeroForNoOps()

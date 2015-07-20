@@ -29,7 +29,10 @@ void MainViewModel::setUserPreferenceOfComplexity(int userPreferredtolerancePerc
 {
     std::list< std::pair<int, int> > complexityDistribution = m_ComplexityToPrecision_Model->GetCurrentComplexityDistribution();
     if (complexityDistribution.empty())
+    {
+        updateOperationsVisualization(0);
         return;
+    }
 
     int bestCandidateFromDistribution = complexityDistribution.front().second;
     int indexOfBestCandidateFromDistribution = complexityDistribution.size();

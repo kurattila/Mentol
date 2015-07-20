@@ -2,6 +2,7 @@
 
 #include "src/MentolLib/ICalcOperation.h"
 #include "src/MentolLib/ICalcOperationsVisualizer.h"
+#include "src/MentolLib/CalcOperationsVisualizer.h"
 
 class CalcOperationsVisualizer_Tests : public QObject
 {
@@ -9,11 +10,22 @@ class CalcOperationsVisualizer_Tests : public QObject
 public:
 
 private slots:
+    void NoOperationAtAll_DisplayedAs_ErrorMessage();
     void SingleSimpleOperation_Displayed_AsSingleEntryOnSingleLine();
     void SingleComplexOperation_Displayed_AsMultipleEntriesOnSingleLine();
     void MultipleSimpleOperations_Displayed_AsSingleEntriesOnMultipleLines();
     void MultipleComplexOperations_Displayed_AsMultipleEntriesOnMultipleLines();
 };
+
+void CalcOperationsVisualizer_Tests::NoOperationAtAll_DisplayedAs_ErrorMessage()
+{
+    std::unique_ptr<ICalcOperationsVisualizer> visualizer( CreateCalcOperationsTextualVisualizer() );
+    std::list<ICalcOperation_shptr> allOps;
+
+    auto displayText = visualizer->GetResult(allOps);
+
+    QCOMPARE(displayText, CalcOperationsTextualVisualizer::TooManyOperationsText);
+}
 
 void CalcOperationsVisualizer_Tests::SingleSimpleOperation_Displayed_AsSingleEntryOnSingleLine()
 {

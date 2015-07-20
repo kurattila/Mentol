@@ -1,7 +1,6 @@
 
 #include "CalcOperationsVisualizer.h"
 #include "ICalcOperationsToGeometryConverter.h"
-#include <QString>
 
 
 
@@ -21,12 +20,17 @@ ISvgVisualizerContext* CreateSvgVisualizerContext(int svgCanvasWidth, int svgCan
 }
 
 
+QString CalcOperationsTextualVisualizer::TooManyOperationsText = "No sane way to compute this...";
+
 CalcOperationsTextualVisualizer::CalcOperationsTextualVisualizer()
 {
 }
 
 QString CalcOperationsTextualVisualizer::GetResult(const std::list<ICalcOperation_shptr> &allOps, ICalcOperationsVisualizer::Context* /*context = nullptr*/) const
 {
+    if (allOps.empty())
+        return CalcOperationsTextualVisualizer::TooManyOperationsText;
+
     QString displayText;
     for (auto it = allOps.begin(); it != allOps.end(); ++it)
     {

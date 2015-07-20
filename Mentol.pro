@@ -9,7 +9,6 @@ QMAKE_CXXFLAGS += -std=c++0x
 
 SOURCES +=  src/MentolApp/main.cpp \
             src/MentolLib/MainViewModel.cpp \
-            UnitTests/ComplexityToPrecisionProjection_Tests.cpp \
             src/MentolLib/ComplexityToPrecision_Model.cpp \
             src/MentolLib/ComplexityToPrecisionProjection.cpp
 
@@ -26,7 +25,9 @@ SOURCES  += UnitTests/CalcOperation_Tests.cpp \
             UnitTests/CalcOperationsVisualizer_Tests.cpp \
             UnitTests/CalcOperationsSvgVisualizer_Tests.cpp \
             UnitTests/CalcOperationsToGeometryConverter_Tests.cpp \
-            UnitTests/KeypadProcessor_Tests.cpp
+            UnitTests/KeypadProcessor_Tests.cpp \
+            UnitTests/ComplexityToPrecisionProjection_Tests.cpp \
+            UnitTests/MainViewModel_Tests.cpp
 
 
 HEADERS  += src/MentolLib/MainViewModel.h \
