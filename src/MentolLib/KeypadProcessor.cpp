@@ -6,6 +6,7 @@ const QString KeypadProcessor::clear("C");
 const QString KeypadProcessor::delChar("delChar");
 const QString KeypadProcessor::ok("OK");
 const QString KeypadProcessor::cancel("Cancel");
+const QString KeypadProcessor::onePerX("1/x");
 
 KeypadProcessor::KeypadProcessor()
 {
@@ -53,6 +54,19 @@ void KeypadProcessor::OnKeyPressed(const QString& keyId)
                 m_WholeInput = zero;
         }
         m_ChangeCallback();
+        return;
+    }
+
+    if (keyId == onePerX)
+    {
+        bool ok = false;
+        double wholeInput = m_WholeInput.toDouble(&ok);
+        if (ok && wholeInput != 0.0)
+        {
+            double reciprocalValue = 1.0 / wholeInput;
+            m_WholeInput = QString("%1").arg(reciprocalValue);
+            m_ChangeCallback();
+        }
         return;
     }
 

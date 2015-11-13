@@ -26,6 +26,9 @@ private slots:
     void OnKeyPressed_ClearsDecimalPoint_WhenDelCharPressed();
     void OnKeyPressed_WontClearAnything_WhenDelCharPressedAndAlreadyEmpty();
 
+    void OnKeyPressed_WillCalculateReciprocalValue_WhenOnePerXPressed();
+    void OnKeyPressed_DoesNothing_WhenOnePerXPressedForZeroValue();
+
     void OnKeyPressed_CallsOkCallback_WhenOkPressed();
     void OnKeyPressed_CallsCancelCallback_WhenCancelPressed();
     void OnKeyPressed_WontCallOkCallback_WhenOkNotPressed();
@@ -36,6 +39,7 @@ private slots:
     void OnKeyPressed_WillNotifyAboutChange_WhenDigitPressed();
     void OnKeyPressed_WillNotifyAboutChange_WhenClearPressed();
     void OnKeyPressed_WillNotifyAboutChange_WhenDelCharPressed();
+    void OnKeyPressed_WillNotifyAboutChange_WhenOnePerXPressed();
     void OnKeyPressed_WillNotifyAboutDigitChange_OnlyAfterChangeHasOccurred();
     void OnKeyPressed_WillNotifyAboutClearChange_OnlyAfterChangeHasOccurred();
     void OnKeyPressed_WillNotifyAboutDelCharChange_OnlyAfterChangeHasOccurred();
@@ -207,6 +211,26 @@ void KeypadProcessor_Tests::OnKeyPressed_WontClearAnything_WhenDelCharPressedAnd
     QCOMPARE(processor.GetWholeInput(), QString("0"));
 }
 
+void KeypadProcessor_Tests::OnKeyPressed_WillCalculateReciprocalValue_WhenOnePerXPressed()
+{
+    KeypadProcessor processor;
+    processor.OnKeyPressed("2");
+    processor.OnKeyPressed("0");
+
+    processor.OnKeyPressed(KeypadProcessor::onePerX);
+
+    QCOMPARE(processor.GetWholeInput(), QString("0.05"));
+}
+
+void KeypadProcessor_Tests::OnKeyPressed_DoesNothing_WhenOnePerXPressedForZeroValue()
+{
+    KeypadProcessor processor;
+
+    processor.OnKeyPressed(KeypadProcessor::onePerX);
+
+    QCOMPARE(processor.GetWholeInput(), QString("0"));
+}
+
 void KeypadProcessor_Tests::OnKeyPressed_CallsOkCallback_WhenOkPressed()
 {
     bool okCallbackCalled = false;
@@ -311,6 +335,20 @@ void KeypadProcessor_Tests::OnKeyPressed_WillNotifyAboutChange_WhenDelCharPresse
                             , [&](){ changeCallbackCalled = true; });
 
     processor.OnKeyPressed(KeypadProcessor::delChar);
+
+    QCOMPARE(changeCallbackCalled, true);
+}
+
+void KeypadProcessor_Tests::OnKeyPressed_WillNotifyAboutChange_WhenOnePerXPressed()
+{
+    bool changeCallbackCalled = false;
+    KeypadProcessor processor([](){}
+                            , [](){}
+                            , [&](){ changeCallbackCalled = true; });
+    processor.OnKeyPressed("1");
+    changeCallbackCalled = false;
+
+    processor.OnKeyPressed(KeypadProcessor::onePerX);
 
     QCOMPARE(changeCallbackCalled, true);
 }

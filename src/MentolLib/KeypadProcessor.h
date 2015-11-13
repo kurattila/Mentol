@@ -21,6 +21,7 @@ public:
     static const QString delChar;
     static const QString ok;
     static const QString cancel;
+    static const QString onePerX;
 
 private:
     void init();

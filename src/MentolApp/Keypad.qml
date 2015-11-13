@@ -97,7 +97,12 @@ Item {
                 onClicked: buttonPressed(keypadText)
             }
 
-            Item {}
+            KeypadButton {
+                keypadText: '1/x'
+                Layout.preferredWidth: buttonWidth
+                Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
+            }
 
             KeypadButton {
                 keypadText: '0'
