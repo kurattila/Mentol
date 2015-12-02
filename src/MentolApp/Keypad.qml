@@ -99,6 +99,7 @@ Item {
 
             KeypadButton {
                 keypadText: '1/x'
+                isSpecialButton: true
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
                 onClicked: buttonPressed(keypadText)
@@ -106,14 +107,29 @@ Item {
 
             KeypadButton {
                 keypadText: '0'
-                Layout.columnSpan: 2
-                Layout.preferredWidth: 2 * buttonWidth + buttonSpacing
+                Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
                 onClicked: buttonPressed(keypadText)
             }
 
             KeypadButton {
                 keypadText: '.'
+                Layout.preferredWidth: buttonWidth
+                Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
+            }
+
+            KeypadButton {
+                keypadText: 'x10'
+                isSpecialButton: true
+                Layout.preferredWidth: buttonWidth
+                Layout.preferredHeight: buttonHeight
+                onClicked: buttonPressed(keypadText)
+            }
+
+            KeypadButton {
+                keypadText: '/10'
+                isSpecialButton: true
                 Layout.preferredWidth: buttonWidth
                 Layout.preferredHeight: buttonHeight
                 onClicked: buttonPressed(keypadText)

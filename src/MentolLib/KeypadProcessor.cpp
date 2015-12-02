@@ -7,6 +7,8 @@ const QString KeypadProcessor::delChar("delChar");
 const QString KeypadProcessor::ok("OK");
 const QString KeypadProcessor::cancel("Cancel");
 const QString KeypadProcessor::onePerX("1/x");
+const QString KeypadProcessor::mulByTen("x10");
+const QString KeypadProcessor::divByTen("/10");
 
 KeypadProcessor::KeypadProcessor()
 {
@@ -67,6 +69,24 @@ void KeypadProcessor::OnKeyPressed(const QString& keyId)
             m_WholeInput = QString("%1").arg(reciprocalValue);
             m_ChangeCallback();
         }
+        return;
+    }
+
+    if (keyId == mulByTen)
+    {
+        double wholeInput = m_WholeInput.toDouble();
+        double tenTimesValue = 10 * wholeInput;
+        m_WholeInput = QString("%1").arg(tenTimesValue);
+        m_ChangeCallback();
+        return;
+    }
+
+    if (keyId == divByTen)
+    {
+        double wholeInput = m_WholeInput.toDouble();
+        double tenthValue = wholeInput / 10;
+        m_WholeInput = QString("%1").arg(tenthValue);
+        m_ChangeCallback();
         return;
     }
 

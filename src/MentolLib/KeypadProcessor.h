@@ -22,6 +22,8 @@ public:
     static const QString ok;
     static const QString cancel;
     static const QString onePerX;
+    static const QString mulByTen;
+    static const QString divByTen;
 
 private:
     void init();

@@ -28,7 +28,7 @@ ApplicationWindow {
 
             Text {
                 id: valueInput
-                text: mainViewModel.keypadProcessorWholeInput + " \u2304"
+                text: mainViewModel.keypadProcessorWholeInput + " v"
                 anchors.fill: parent
                 font.pixelSize: height * 0.9
                 color: 'white'
