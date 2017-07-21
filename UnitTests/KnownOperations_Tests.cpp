@@ -22,7 +22,7 @@ void KnownOperations_Tests::FactoryMethodOne_CreatesPopulatedCollection()
 
     size_t operationsCount = knownOperations->GetAllKnownOperations().size();
 
-    QCOMPARE(operationsCount, 5U);
+    QCOMPARE(operationsCount, 5UL);
 }
 
 void KnownOperations_Tests::FactoryMethodTwo_CreatesEmptyCollection()
@@ -31,7 +31,7 @@ void KnownOperations_Tests::FactoryMethodTwo_CreatesEmptyCollection()
 
     size_t operationsCount = knownOperations->GetAllKnownOperations().size();
 
-    QCOMPARE(operationsCount, 0U);
+    QCOMPARE(operationsCount, 0UL);
 }
 
 void KnownOperations_Tests::AddBaseOperation_WillAddOperation()
@@ -40,7 +40,7 @@ void KnownOperations_Tests::AddBaseOperation_WillAddOperation()
 
     knownOperations->AddBaseOperation(CreateCalcOperation(1.1));
 
-    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 1U);
+    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 1UL);
 }
 
 void KnownOperations_Tests::AddBaseOperation_ForDefaultComplexity_WontAddDerivedOperations()
@@ -51,7 +51,7 @@ void KnownOperations_Tests::AddBaseOperation_ForDefaultComplexity_WontAddDerived
     knownOperations->AddBaseOperation(CreateCalcOperation(2.2));
     knownOperations->AddBaseOperation(CreateCalcOperation(3.3));
 
-    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 3U);
+    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 3UL);
 }
 
 void KnownOperations_Tests::AddBaseOperation_ForLevelTwoComplexity_WillAddDerivedOperations()
@@ -63,7 +63,7 @@ void KnownOperations_Tests::AddBaseOperation_ForLevelTwoComplexity_WillAddDerive
     knownOperations->AddBaseOperation(CreateCalcOperation(2.2));
     knownOperations->AddBaseOperation(CreateCalcOperation(3.3));
 
-    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 9U);
+    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 9UL);
 }
 
 void KnownOperations_Tests::AddBaseOperation_ForLevelThreeComplexity_WillAddDerivedOperations()
@@ -95,7 +95,7 @@ void KnownOperations_Tests::AddBaseOperation_ForLevelThreeComplexity_WillAddDeri
 //    2.2 * 3.3 * 3.3
 //    3.3 * 3.3 * 3.3
 
-    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 19U);
+    QCOMPARE(knownOperations->GetAllKnownOperations().size(), 19UL);
 }
 
 #include "KnownOperations_Tests.moc"

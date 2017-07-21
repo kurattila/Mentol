@@ -27,7 +27,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsSingleDataPoint
 
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
-    QCOMPARE(dataPoints.size(), 1U);
+    QCOMPARE(dataPoints.size(), 1UL);
     QCOMPARE(dataPoints.front().second, 100); // 100%
 }
 
@@ -40,7 +40,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsSingleDataPoint
 
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
-    QCOMPARE(dataPoints.size(), 1U);
+    QCOMPARE(dataPoints.size(), 1UL);
     QCOMPARE(dataPoints.front().second, 100); // 100%
 }
 
@@ -53,7 +53,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsTwoDataPoints_W
 
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
-    QCOMPARE(dataPoints.size(), 2U);
+    QCOMPARE(dataPoints.size(), 2UL);
     QCOMPARE(dataPoints.front().second, 91);              // 1.1 ≈ 1.0         with  91% precision
     QCOMPARE(std::next(dataPoints.begin())->second, 100); // 1.1 ≈ 1.0 + 0.1   with 100% precision
 }
@@ -67,7 +67,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsMultipleDataPoi
 
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
-    QCOMPARE(dataPoints.size(), 4U);
+    QCOMPARE(dataPoints.size(), 4UL);
     QCOMPARE(std::next(dataPoints.begin(), 0)->second,  65);
     QCOMPARE(std::next(dataPoints.begin(), 1)->second,  70);
     QCOMPARE(std::next(dataPoints.begin(), 2)->second,  98);
@@ -83,7 +83,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsMultipleDataPoi
 
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
-    QCOMPARE(dataPoints.size(), 3U);
+    QCOMPARE(dataPoints.size(), 3UL);
     QCOMPARE(std::next(dataPoints.begin(), 0)->second,  71);
     QCOMPARE(std::next(dataPoints.begin(), 1)->second,  93);
     QCOMPARE(std::next(dataPoints.begin(), 2)->second, 100);
@@ -98,7 +98,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsComplexityAsWel
 
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
-    QCOMPARE(dataPoints.size(), 3U);
+    QCOMPARE(dataPoints.size(), 3UL);
     QCOMPARE(std::next(dataPoints.begin(), 0)->first, 0);
     QCOMPARE(std::next(dataPoints.begin(), 1)->first, 2);
     QCOMPARE(std::next(dataPoints.begin(), 2)->first, 4);
@@ -113,7 +113,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsNoDataPoints_Wh
 
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
-    QCOMPARE(dataPoints.size(), 0U);
+    QCOMPARE(dataPoints.size(), 0UL);
 }
 
 #include "ComplexityToPrecisionProjection_Tests.moc"

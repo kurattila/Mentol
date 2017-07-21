@@ -35,8 +35,8 @@ void CalcOperationsToGeometryConverter_Tests::NoOperation_DrawsOnlySingleTransit
     auto allLines = opsToGeometryConverter->GetTransitionLines();
     auto allCircles = opsToGeometryConverter->GetStateCircles();
 
-    QCOMPARE(allLines.size(), 1U);
-    QCOMPARE(allCircles.size(), 2U);
+    QCOMPARE(allLines.size(), 1UL);
+    QCOMPARE(allCircles.size(), 2UL);
 }
 
 void CalcOperationsToGeometryConverter_Tests::NoOperation_DrawsOnlyStartAndEnd()
@@ -73,8 +73,8 @@ void CalcOperationsToGeometryConverter_Tests::SingleOperation_ComposedOfTwoOpera
 
     auto allLines = opsToGeometryConverter->GetTransitionLines();
     auto allCircles = opsToGeometryConverter->GetStateCircles();
-    QCOMPARE(allLines.size(), 3U);
-    QCOMPARE(allCircles.size(), 4U);
+    QCOMPARE(allLines.size(), 3UL);
+    QCOMPARE(allCircles.size(), 4UL);
 }
 
 void CalcOperationsToGeometryConverter_Tests::SingleOperation_NotComposedOfMany_HasCircleAtHalfTheWay()
@@ -106,8 +106,8 @@ void CalcOperationsToGeometryConverter_Tests::TwoSimpleOperations_Have4LinesAnd4
 
     auto allLines = opsToGeometryConverter->GetTransitionLines();
     auto allCircles = opsToGeometryConverter->GetStateCircles();
-    QCOMPARE(allLines.size(), 4U);
-    QCOMPARE(allCircles.size(), 4U);
+    QCOMPARE(allLines.size(), 4UL);
+    QCOMPARE(allCircles.size(), 4UL);
 }
 
 void CalcOperationsToGeometryConverter_Tests::TwoSimpleOperations_FirstWillBeLeftmost()

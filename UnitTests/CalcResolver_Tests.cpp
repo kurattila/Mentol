@@ -42,7 +42,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsIdentity_ForOne()
 
     auto neededOperations = m_CalcResolver->GetNeededOperations();
 
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     QCOMPARE(neededOperations.front()->GetFinalMultiplier(), 1.);
 }
 
@@ -53,7 +53,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsSingleBaseOperation_ForExact
     auto neededOperations = m_CalcResolver->GetNeededOperations();
 
     ICalcOperation_shptr firstOp = neededOperations.front();
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     QCOMPARE(firstOp->GetFinalMultiplier(), 0.5);
 }
 
@@ -64,7 +64,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsSingleBaseOperation_ForExact
     auto neededOperations = m_CalcResolver->GetNeededOperations();
 
     ICalcOperation_shptr firstOp = neededOperations.front();
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     QCOMPARE(firstOp->GetFinalMultiplier(), 2.);
 }
 
@@ -76,7 +76,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsNearestSingleBaseOperation_W
     auto neededOperations = m_CalcResolver->GetNeededOperations();
 
     ICalcOperation_shptr firstOp = neededOperations.front();
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     QCOMPARE(firstOp->GetFinalMultiplier(), 0.5);
 }
 
@@ -87,7 +87,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsIdentity_WhenHugeToleranceAc
 
     auto neededOperations = m_CalcResolver->GetNeededOperations();
 
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     QCOMPARE(neededOperations.front()->GetFinalMultiplier(), 1.);
 }
 
@@ -100,7 +100,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsExactMatchingTwoOps_WhenTiny
 
     ICalcOperation_shptr firstOp = neededOperations.front();
     ICalcOperation_shptr secondOp = neededOperations.back();
-    QCOMPARE(neededOperations.size(), 2U);
+    QCOMPARE(neededOperations.size(), 2UL);
     QCOMPARE(firstOp->GetFinalMultiplier(), 0.5);
     QCOMPARE(secondOp->GetFinalMultiplier(), 0.1);
 }
@@ -112,7 +112,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsHalfTenthAndTenth_ForZeroPoi
 
     auto neededOperations = m_CalcResolver->GetNeededOperations(); // 0.7 ≈ 0.5 + 2x0.1 (better than 0.5 + 0.1 + 0.1, because of lower complexity)
 
-    QCOMPARE(neededOperations.size(), 2U);
+    QCOMPARE(neededOperations.size(), 2UL);
     auto op = neededOperations.begin();
     QCOMPARE((*op)->GetFinalMultiplier(), 0.5);
     ++op;
@@ -128,7 +128,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsHalfTenthTenthTenth_ForZeroP
     auto neededOperations = m_CalcResolver->GetNeededOperations(); // 0.8 ≈ 0.5 + 0.1 + 0.1 + 0.1
                                                                    // 0.8 ≈ 0.1 * 2 * 2 * 2
 
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     QCOMPARE(neededOperations.front()->GetFinalMultiplier(), 0.8);
 }
 
@@ -139,7 +139,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsComplexityOne_ForHugeToleran
 
     auto neededOperations = m_CalcResolver->GetNeededOperations(); // 7.4 ≈ 10.0
 
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     QCOMPARE(neededOperations.front()->GetComplexityDistance(), 1);
     QCOMPARE(neededOperations.front()->GetFinalMultiplier(), 10.);
 }
@@ -153,7 +153,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsComplexityThree_ForModerateT
                                                                    // (   lower complexity than 7.4 ≈ 0.5 x 10 + 2.0
                                                                    // and lower complexity than 7.4 ≈ 2.0 + 2.0 + 2.0)
 
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     auto op = neededOperations.front();
     QCOMPARE(op->GetFinalMultiplier(), 8.); // 2 x 2 x 2
     auto op2 = op->GetPrevOperation();
@@ -169,7 +169,7 @@ void CalcResolver_Tests::GetNeededOperations_ReturnsComplexityFour_ForSmallToler
 
     auto neededOperations = m_CalcResolver->GetNeededOperations(); // 7.42 ≈ 0.5x10 + 2 + 0.5
                                                                    // (lower complexity than 7.42 ≈ 2 + 2 + 2 + 1 + 0.5)
-    QCOMPARE(neededOperations.size(), 3U);
+    QCOMPARE(neededOperations.size(), 3UL);
     auto op = neededOperations.begin();
     QCOMPARE((*op)->GetFinalMultiplier(), 5.); // 5 == 0.5 x 10.0
     QCOMPARE((*op)->GetPrevOperation()->GetMultiplier(), 10.);
@@ -187,7 +187,7 @@ void CalcResolver_Tests::GetNeededOperations_Returns_ForZeroPointThirteen()
     auto neededOperations = m_CalcResolver->GetNeededOperations(); // 0.13 ≈ 0.5 x 0.5 x 0.5
                                                                    // (better than 0.1 + 0.05)
 
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     auto op = neededOperations.begin();
     QCOMPARE((*op)->GetFinalMultiplier(), 0.125);
 }
@@ -200,7 +200,7 @@ void CalcResolver_Tests::GetNeededOperations_Returns_TwoTwoTwoForEight()
     auto neededOperations = m_CalcResolver->GetNeededOperations(); // 8.0 ≈ 2 x 2 x 2
                                                                    // (better than 2 + 2 + 2 + 2)
 
-    QCOMPARE(neededOperations.size(), 1U);
+    QCOMPARE(neededOperations.size(), 1UL);
     auto op = neededOperations.front();
     QCOMPARE(op->GetFinalMultiplier(), 8.); // 2 x 2 x 2
     auto op2 = op->GetPrevOperation();
@@ -216,7 +216,7 @@ void CalcResolver_Tests::GetNeededOperations_CanHandleZeroTolerance_WhenFullPrec
 
     auto neededOperations = m_CalcResolver->GetNeededOperations(); // 1.1 ≈ 1 + 0.1
 
-    QCOMPARE(neededOperations.size(), 2U);
+    QCOMPARE(neededOperations.size(), 2UL);
     auto op = neededOperations.begin();
     QCOMPARE((*op)->GetFinalMultiplier(), 1.);
     op++;
