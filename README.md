@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kurattila/Mentol.svg?branch=master)](https://travis-ci.org/kurattila/Mentol)
+
 # Mentol
 ### Calculate exchange rates easily in your head
 
