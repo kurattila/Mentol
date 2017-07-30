@@ -19,6 +19,7 @@ public:
     enum LectureCollectionFactoryRoles
     {
         PrecisionRole = Qt::UserRole + 1,
+        PrecisionTextRole,
         ComplexityRole,
         ComplexityNormalizedRole,
         IsUserPreferredRole
@@ -35,6 +36,7 @@ protected:
     QHash<int, QByteArray> roleNames() const;
 
 private:
+    QString getPrecisionTextualRepresentation(int precision) const;
     double m_DestValue;
     std::unique_ptr<ComplexityToPrecisionProjection> m_ComplexityToPrecisionProjection;
     std::list< std::pair<int, int> > m_ComplexityDistribution;

@@ -14,6 +14,7 @@ public:
     virtual void SetTolerancePercents(int acceptedTolerancePercents) = 0;
     virtual std::list<ICalcOperation_shptr> GetNeededOperations() const = 0;
     virtual int GetAccumulatedComplexity(const std::list<ICalcOperation_shptr>& opsToSumUp) const = 0;
+    virtual int GetPrecision(const std::list<ICalcOperation_shptr>& opsToSumUp) const = 0;
 };
 
 ICalcResolver_shptr CreateCalcResolver();

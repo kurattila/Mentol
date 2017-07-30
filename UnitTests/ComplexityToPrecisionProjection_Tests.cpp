@@ -14,6 +14,7 @@ private slots:
     void GetDataPoints_ReturnsTwoDataPoints_WhenTwoDifferentPrecisionsPossible();
     void GetDataPoints_ReturnsMultipleDataPoints_WhenMultipleDifferentPrecisionsPossible();
     void GetDataPoints_ReturnsMultipleDataPoints_ForSpecialLimitValue();
+    void GetDataPoints_ReturnsAbove100Percent_ForValuesAbove100();
     void GetDataPoints_ReturnsComplexityAsWell_Always();
     void GetDataPoints_ReturnsNoDataPoints_WhenDestValueCantBeComputed();
 };
@@ -69,7 +70,7 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsMultipleDataPoi
 
     QCOMPARE(dataPoints.size(), 4UL);
     QCOMPARE(std::next(dataPoints.begin(), 0)->second,  65);
-    QCOMPARE(std::next(dataPoints.begin(), 1)->second,  70);
+    QCOMPARE(std::next(dataPoints.begin(), 1)->second, 130);
     QCOMPARE(std::next(dataPoints.begin(), 2)->second,  98);
     QCOMPARE(std::next(dataPoints.begin(), 3)->second, 100);
 }
@@ -84,8 +85,20 @@ void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsMultipleDataPoi
     auto dataPoints = complexityProjection.GetDataPoints(destValue);
 
     QCOMPARE(dataPoints.size(), 3UL);
+}
+
+void ComplexityToPrecisionProjection_Tests::GetDataPoints_ReturnsAbove100Percent_ForValuesAbove100()
+{
+    const double destValue = 1.4;
+    ICalcResolver_shptr resolver = CreateCalcResolver();
+    resolver->SetDestValue(destValue);
+    ComplexityToPrecisionProjection complexityProjection;
+
+    auto dataPoints = complexityProjection.GetDataPoints(destValue);
+
+    QCOMPARE(dataPoints.size(), 3UL);
     QCOMPARE(std::next(dataPoints.begin(), 0)->second,  71);
-    QCOMPARE(std::next(dataPoints.begin(), 1)->second,  93);
+    QCOMPARE(std::next(dataPoints.begin(), 1)->second, 107);
     QCOMPARE(std::next(dataPoints.begin(), 2)->second, 100);
 }
 

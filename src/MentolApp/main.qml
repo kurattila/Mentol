@@ -81,10 +81,10 @@ ApplicationWindow {
                         model: mainViewModel.complexityDistribution
 
                         MouseArea {
-                            onPressed: mainViewModel.setUserPreferenceOfComplexity(100 - model.precision)
+                            onPressed: mainViewModel.setUserPreferenceOfComplexity(Math.abs(100 - model.precision))
                             hoverEnabled: true
         //                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                            onEntered: if (pressed) mainViewModel.setUserPreferenceOfComplexity(100 - model.precision)
+                            onEntered: if (pressed) mainViewModel.setUserPreferenceOfComplexity(Math.abs(100 - model.precision))
 
                             width: canvasColumn.width
                             height: (canvasColumn.height - legendCaptions.height) / canvasRepeater.count
@@ -105,12 +105,12 @@ ApplicationWindow {
                                         border.color: mentolLightGreen
                                         opacity: model.isUserPreferred ? 1 : 0.9
                                         height: parent.height
-                                        width: 0.01 * canvasColumn.width / 2 * model.precision
+                                        width: 0.01 * canvasColumn.width / 2 * (100 - Math.abs(100 - model.precision))
 
                                         Text {
                                             width: parent.width
                                             height: parent.height
-                                            text: model.precision + '%'
+                                            text: model.precisionText
                                             color: model.isUserPreferred ? mentolLightGray : mentolLightGreen
                                             font.pixelSize: valueInput.height * 0.5
                                             font.weight: Font.Bold

@@ -43,11 +43,11 @@ void MainViewModel::setUserPreferenceOfComplexity(int userPreferredtolerancePerc
         bestCandidateFromDistribution = currentPrecision.second;
         --indexOfBestCandidateFromDistribution;
 
-        if (currentPrecision.second >= 100 - userPreferredtolerancePercents)
+        if (abs(100 - currentPrecision.second) <= userPreferredtolerancePercents)
             break;
     }
 
-    updateOperationsVisualization(100 - bestCandidateFromDistribution);
+    updateOperationsVisualization(abs(100 - bestCandidateFromDistribution));
     m_ComplexityToPrecision_Model->SetUserPreferredIndexOfComplexity(indexOfBestCandidateFromDistribution);
 }
 

@@ -38,7 +38,8 @@ std::list< std::pair<int, int> > ComplexityToPrecisionProjection::GetDataPoints(
         if (neededOperations.empty())
             continue;
         int accumulatedComplexity = resolver->GetAccumulatedComplexity(neededOperations);
-        updateComplexityToPrecisionMap(complexityToPrecisionMap, accumulatedComplexity, 100 - tolerancePercents);
+        int resultPrecision = resolver->GetPrecision(neededOperations);
+        updateComplexityToPrecisionMap(complexityToPrecisionMap, accumulatedComplexity, resultPrecision);
     }
 
     std::list< std::pair<int, int> > dataPoints;

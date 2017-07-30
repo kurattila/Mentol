@@ -209,3 +209,18 @@ int CalcResolver::GetAccumulatedComplexity(const std::list<ICalcOperation_shptr>
     }
     return accumulatedComplexity;
 }
+
+int CalcResolver::GetPrecision(const std::list<ICalcOperation_shptr> &opsToSumUp) const
+{
+    if (opsToSumUp.empty())
+        return 100;
+
+    double realResult = 0;
+    for (const ICalcOperation_shptr& op: opsToSumUp)
+    {
+        realResult = realResult + op->GetFinalMultiplier();
+    }
+
+    double roundedPrecision = round(100 * (realResult / m_DestValue));
+    return roundedPrecision;
+}

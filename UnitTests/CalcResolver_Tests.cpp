@@ -32,6 +32,11 @@ private slots:
     void GetAccumulatedComplexity_ReturnsSingleOpComplexity_ForSingleOp();
     void GetAccumulatedComplexity_ReturnsSumOfComplexitiesPlusAdditions_ForMultipleOps();
 
+    void GetPrecision_Returns_100PercentForNoOps();
+    void GetPrecision_Precision_Below100Percent_SingleOp();
+    void GetPrecision_Precision_Above100Percent_SingleOp();
+    void GetPrecision_Returns_RoundedPercents();
+
 private:
     ICalcResolver_shptr m_CalcResolver;
 };
@@ -266,6 +271,53 @@ void CalcResolver_Tests::GetAccumulatedComplexity_ReturnsSumOfComplexitiesPlusAd
     int accumulatedComplexity = m_CalcResolver->GetAccumulatedComplexity(opsToSumUp);
 
     QCOMPARE(accumulatedComplexity, 3 + 1); // 3 multiplications and 1 addition operation
+}
+
+void CalcResolver_Tests::GetPrecision_Returns_100PercentForNoOps()
+{
+    std::list<ICalcOperation_shptr> opsToSumUp;
+
+    int precision = m_CalcResolver->GetPrecision(opsToSumUp);
+
+    QCOMPARE(precision, 100);
+}
+
+void CalcResolver_Tests::GetPrecision_Precision_Below100Percent_SingleOp()
+{
+    std::list<ICalcOperation_shptr> opsToSumUp;
+    auto op1 = CreateCalcOperation(0.5);
+    auto op2 = CreateCalcOperation(0.1, op1);
+    opsToSumUp.push_back(op2);
+
+    m_CalcResolver->SetDestValue(0.06);
+    int precision = m_CalcResolver->GetPrecision(opsToSumUp);
+
+    QCOMPARE(precision, 83);
+}
+
+void CalcResolver_Tests::GetPrecision_Precision_Above100Percent_SingleOp()
+{
+    std::list<ICalcOperation_shptr> opsToSumUp;
+    auto op1 = CreateCalcOperation(0.5);
+    auto op2 = CreateCalcOperation(0.1, op1);
+    opsToSumUp.push_back(op2);
+
+    m_CalcResolver->SetDestValue(0.04);
+    int precision = m_CalcResolver->GetPrecision(opsToSumUp);
+
+    QCOMPARE(precision, 125);
+}
+
+void CalcResolver_Tests::GetPrecision_Returns_RoundedPercents()
+{
+    std::list<ICalcOperation_shptr> opsToSumUp;
+    auto op = CreateCalcOperation(1);
+    opsToSumUp.push_back(op);
+
+    m_CalcResolver->SetDestValue(1.1);
+    int precision = m_CalcResolver->GetPrecision(opsToSumUp);
+
+    QCOMPARE(precision, 91); // 90.9% => 91%
 }
 
 #include "CalcResolver_Tests.moc"

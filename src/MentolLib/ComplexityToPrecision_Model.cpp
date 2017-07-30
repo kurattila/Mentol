@@ -70,6 +70,8 @@ QVariant ComplexityToPrecision_Model::data(const QModelIndex& index, int role) c
 
     if (role == PrecisionRole)
         return QVariant::fromValue(itFoundPrecision->second);
+    else if (role == PrecisionTextRole)
+        return getPrecisionTextualRepresentation(itFoundPrecision->second);
     else if (role == ComplexityRole)
         return QVariant::fromValue(itFoundPrecision->first);
     else if (role == ComplexityNormalizedRole)
@@ -87,8 +89,28 @@ QHash<int, QByteArray> ComplexityToPrecision_Model::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[PrecisionRole] = "precision";
+    roles[PrecisionTextRole] = "precisionText";
     roles[ComplexityRole] = "complexity";
     roles[ComplexityNormalizedRole] = "complexityNormalized";
     roles[IsUserPreferredRole] = "isUserPreferred";
     return roles;
+}
+
+QString ComplexityToPrecision_Model::getPrecisionTextualRepresentation(int precision) const
+{
+    QString textualRepresentation;
+
+    if (precision == 100)
+        textualRepresentation = "100%";
+    else
+    {
+        if (precision < 100)
+            textualRepresentation = "-";
+        else
+            textualRepresentation = "+";
+
+        textualRepresentation.append(QString("%1%").arg(abs(100 - precision)));
+    }
+
+    return textualRepresentation;
 }

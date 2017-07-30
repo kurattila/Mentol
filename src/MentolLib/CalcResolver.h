@@ -16,6 +16,7 @@ public:
     void SetTolerancePercents(int acceptedTolerancePercents);
     std::list<ICalcOperation_shptr> GetNeededOperations() const;
     int GetAccumulatedComplexity(const std::list<ICalcOperation_shptr>& opsToSumUp) const;
+    int GetPrecision(const std::list<ICalcOperation_shptr>& opsToSumUp) const override;
 
 private:
     enum MinDistanceLookupStrategy
