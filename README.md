@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/kurattila/Mentol.svg?branch=master)](https://travis-ci.org/kurattila/Mentol)
-[![Coverage Status](https://coveralls.io/repos/github/kurattila/Mentol/badge.svg?branch=master)](https://coveralls.io/github/kurattila/Mentol?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/kurattila/Mentol/badge.png?branch=master)](https://coveralls.io/github/kurattila/Mentol?branch=master)
 
 # Mentol
 ### Calculate exchange rates easily in your head
