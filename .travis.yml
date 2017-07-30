@@ -1,3 +1,11 @@
+#
+# Sources/infos for putting together Qt + Travis CI + Coveralls
+#
+# http://osdevlab.blogspot.sk/2016/02/simple-unit-test-with-qt-continuous.html
+# https://forum.qt.io/topic/50340/installing-qt-5-4-dev-packages-in-travis-ci/16
+# https://github.com/eddyxu/cpp-coveralls
+# https://andrewdolby.com/articles/2016/continuous-deployment-for-qt-applications/
+
 language: cpp
 sudo: required
 compiler:
@@ -12,6 +20,6 @@ script:
   - source /opt/qt55/bin/qt55-env.sh
   - /opt/qt55/bin/qmake
   - make
-  - /home/travis/build/kurattila/Mentol/Mentol /UnitTests
+  - /home/travis/build/kurattila/Mentol/Mentol /UnitTests # executing tests actually measures the coverage
 after_success:
   - coveralls --exclude lib --exclude tests --gcov-options '\-lp'

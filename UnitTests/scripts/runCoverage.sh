@@ -2,7 +2,7 @@
 
 # Setting up:
 #   in QtCreator, clone a new 'Run' command and add the following into "Command line arguments" field:
-#   "> output.log && (%{sourceDir}/UnitTests/scripts/runCoverage.sh ./)"
+#   "/UnitTests > output.log && (%{sourceDir}/UnitTests/scripts/runCoverage.sh ./)"
 #
 # For details, see:
 #   https://asmaloney.com/2017/01/code/code-coverage-of-unit-tests-using-qt-5-on-macos/
