@@ -7,6 +7,10 @@ SRC_DIR = $$TOP_PWD
 # Enable C++11 support (but on MSVC not needed - it generates warnings)
 QMAKE_CXXFLAGS += -std=c++0x
 
+# Code Coverage
+QMAKE_CXXFLAGS += --coverage
+QMAKE_LFLAGS += --coverage
+
 SOURCES +=  src/MentolApp/main.cpp \
             src/MentolLib/MainViewModel.cpp \
             src/MentolLib/ComplexityToPrecision_Model.cpp \
@@ -59,5 +63,8 @@ DISTFILES += \
     android/AndroidManifest.xml \
     src/MentolApp/Keypad.qml \
     src/MentolApp/KeypadButton.qml
+
+OTHER_FILES += \
+    UnitTests/scripts/runCoverage.sh
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
