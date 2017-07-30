@@ -22,4 +22,4 @@ script:
   - make
   - /home/travis/build/kurattila/Mentol/Mentol /UnitTests # executing tests actually measures the coverage
 after_success:
-  - coveralls --exclude UnitTests --exclude-pattern '.*\.moc$' --exclude-pattern "^moc_.*\.cpp$" --gcov-options '\-lp'
+  - coveralls --exclude UnitTests --exclude-pattern '.*\.moc$' --exclude-pattern "moc_.*\.cpp$" --gcov-options '\-lp'
