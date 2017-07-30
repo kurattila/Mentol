@@ -21,7 +21,7 @@ mkdir -p ${HTML_RESULTS}
 "${LCOV}" -d "${SRC_DIR}" -c -o "${SRC_DIR}/coverage.info"
  
 # remove some paths
-"${LCOV}" -r "${SRC_DIR}/coverage.info" "*Qt*.framework*" "*Xcode.app*" "*.moc" "*moc_*.cpp" "*/UnitTests/*" -o "${SRC_DIR}/coverage-filtered.info"
+"${LCOV}" -r "${SRC_DIR}/coverage.info" "*Qt*.framework*" "*Xcode.app*" "*.moc" "*moc_*.cpp" "/usr/include/*" "*/build-Mentol-*" "QtCore/*" "QtGui/*" "QtQml/*" "QtTest/*" "QtWidgets/*" "*/UnitTests/*" -o "${SRC_DIR}/coverage-filtered.info"
  
 # generate our HTML
 "${GENHTML}" -o "${HTML_RESULTS}" "${SRC_DIR}/coverage-filtered.info"

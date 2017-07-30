@@ -29,10 +29,6 @@ private:
     int    m_AcceptedTolerancePercents;
     std::unique_ptr<IKnownOperations> m_pAllOperationsCollection;
 
-    ICalcOperation_shptr getOperationWithMinDistance(double destinationValue
-                                                   , const std::list<ICalcOperation_shptr>& allKnownOperations
-                                                   , MinDistanceLookupStrategy lookupStrategy) const;
-
     ICalcOperation_shptr getOperationWithBestConvergence(double destinationValue
                                                        , const std::list<ICalcOperation_shptr>& allKnownOperations
                                                        , const std::list<ICalcOperation_shptr>& convergenceOpsSoFar

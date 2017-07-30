@@ -29,30 +29,6 @@ bool isGreaterThanZero(double value)
     return value > -1e-5;
 }
 
-ICalcOperation_shptr CalcResolver::getOperationWithMinDistance(double destinationValue
-                                                             , const std::list<ICalcOperation_shptr>& allKnownOperations
-                                                             , CalcResolver::MinDistanceLookupStrategy lookupStrategy) const
-{
-    double minDistanceToDestValue = std::numeric_limits<double>::max();
-    ICalcOperation_shptr opWithMinDistance = allKnownOperations.front();
-
-    for (auto itOp = allKnownOperations.begin(); itOp != allKnownOperations.end(); ++itOp)
-    {
-        ICalcOperation_shptr op = *itOp;
-        double distanceToDestValue = destinationValue - op->GetFinalMultiplier();
-        if (fabs(distanceToDestValue) < minDistanceToDestValue)
-        {
-            if (lookupStrategy == CalcResolver::RawAbsoluteDistance || isGreaterThanZero(distanceToDestValue))
-            {
-                minDistanceToDestValue = fabs(distanceToDestValue);
-                opWithMinDistance = op;
-            }
-        }
-    }
-
-    return opWithMinDistance;
-}
-
 static double getDistanceUsingSumOfOperations(double destValue, const std::list<ICalcOperation_shptr>& operationsToSumUp)
 {
     if (operationsToSumUp.empty())

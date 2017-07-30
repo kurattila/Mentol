@@ -48,22 +48,6 @@ float getComplexityNormalized(int complexity)
     return complexity / maxDisplayedComplexity;
 }
 
-QString getHumanReadableComplexityPhrase(int complexity)
-{
-    if (complexity <= 1)
-        return "Very Easy";
-    else if (complexity == 2)
-        return "Easy";
-    else if (complexity == 3)
-        return "Moderate";
-    else if (complexity == 4)
-        return "Hard";
-    else if (complexity >= 5)
-        return "Very Hard";
-    else
-        return "---";
-}
-
 QVariant ComplexityToPrecision_Model::data(const QModelIndex& index, int role) const
 {
     auto itFoundPrecision = std::next(m_ComplexityDistribution.begin(), index.row());
