@@ -6,7 +6,7 @@
 
 Ever been to a foreign country and struggled to have some prices converted back to your own currency? Yes, you have a great calculator app on your smartphone - maybe it can even scan the pricetag for you and show the converted price immediately. But is it convenient to pull out your smartphone 100 times in a crowded market? Are you OK with taking your smartphone to the beach, right next to a splashing party?
 
-###This mobile app reveals neat tricks to quickly convert USD to EUR, or EUR to HUF, or...
+### This mobile app reveals neat tricks to quickly convert USD to EUR, or EUR to HUF, or...
 
 ![](Mentol-Screenshot-2.png "Mentol Screenshot")
 
